@@ -13,8 +13,8 @@
                 <div class="panel panel-default panel_bnt_fix">
                     <div class="panel-body">
                         <div class="col-xs-4 col-sm-6 col-md-6 col-lg-6 col_fix">
-                            <div ng-controller="setingres_clr">
-                            <a ng-class="{disabled: idclon == null}" ng-click="toggle()" class="btn btn-default btn-sm"><i class="fa fa-edit fa-1x"></i>&nbsp;Añadir</a>
+                            <div ng-controller="setopens_clr">
+                            <a ng-class="{disabled: idclon == null}" ng-click="toggle( idclon)" class="btn btn-default btn-sm"><i class="fa fa-edit fa-1x"></i>&nbsp;Añadir</a>
                             <!-- <button class="btn btn-default btn-sm"><i class="fa fa-print fa-1x"></i>Imprimir</button> -->
                                 <div ng-include="createtpl"></div>
                             </div>
@@ -76,5 +76,5 @@
 @endsection
 @section('scripts')
     <script src="app/opens.js"></script>
-    <script src="app/setingres.js"></script>
+    <script src="app/setopens.js"></script>
 @endsection

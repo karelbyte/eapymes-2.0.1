@@ -1,5 +1,5 @@
-app.controller('setingres_clr', ['$scope', '$http', 'entity_ingres',  function ($scope, $http, entity_ingres ) {
-    $scope.createtpl = "/tpl/ingredients/create.blade.php";
+app.controller('setopens_clr', ['$scope', '$http', 'entity_ingres',  function ($scope, $http, entity_ingres ) {
+    $scope.createtpl = "/tpl/opens/create.blade.php";
     $scope.order = {
         field : 'products.code',
         type : 'asc',
@@ -33,11 +33,12 @@ app.controller('setingres_clr', ['$scope', '$http', 'entity_ingres',  function (
     $scope.getresult = function getResultPages(page)
     {
         $http({
-            url: "/ingredients/lists/" + entity_ingres.id,
+            url: "/opens/products/" + $scope.id,
             method: "GET",
             params: {start : page-1, take: $scope.recordpage, fillter : $scope.filter, order: $scope.order}
         }).then(function (response) {
-            $scope.listaingres = response.data.data;
+            $scope.products = response.data.data;
+            $scope.shelves = response.data.shelves;
             $scope.totalpage =  Math.ceil(parseInt(response.data.total)/ $scope.recordpage);
         })
     };
@@ -45,7 +46,8 @@ app.controller('setingres_clr', ['$scope', '$http', 'entity_ingres',  function (
         $scope.getresult($scope.currentpage);
     });
 
-    $scope.toggle = function () {
+    $scope.toggle = function (id) {
+        $scope.id = id;
         $scope.getresult($scope.currentpage);
         $('#modal_add_edit').modal('show');
     };

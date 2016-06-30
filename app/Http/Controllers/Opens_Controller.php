@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shelves;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -41,12 +42,27 @@ class Opens_Controller extends Controller
         return response()->json($result);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function products(Request $request, $id)
+    {
+        $skip =$request['start'] * $request['take'];
+        $products = DB::table('products')
+            ->where('active', 1);
+        $filtros = json_decode($request['fillter'], true);
+        $order = json_decode($request['order'], true);
+        if ( $filtros['name'] !== "" )  $products->where('name', 'LIKE',  "%".$filtros['name']."%");
+        if ( $filtros['code'] !== "" )  $products->where('code', 'LIKE',  "%".$filtros['code']."%");
+        $products->orderby($order['field'], $order['type'] );
+        $total = $products->select('id', 'name', 'code')->count();
+        $productlist = $products->skip($skip)->take($request['take'])->get();
+        $shelves = DB::table('shelves')->select('id', 'name')->where('idstore', $id)->get();
+        $result = [
+            'total' => $total,
+            'data' => $productlist,
+            'shelves' => $shelves,
+        ];
+        return response()->json($result);
+    }
+
     public function store(Request $request)
     {
         //

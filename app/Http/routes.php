@@ -2,6 +2,8 @@
 /*'middleware' => 'auth'*/
 Route::group(['middleware' => 'auth'], function () {
 
+/*
+ <label>{{ auth()->user()->nick}}</label> */
 
 get('/', function () {
     return view('app.home');
@@ -64,6 +66,7 @@ get('/stores/lists', 'Stores_Controller@lists');
 resource('stores','Stores_Controller');
 
 // routes storehouses
+get('/opens/products/{id}', 'Opens_Controller@products');
 get('/opens/lists', 'Opens_Controller@lists');
 resource('opens','Opens_Controller');
     
