@@ -70,7 +70,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sistema&nbsp;&nbsp;<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-user"></i>&nbsp;&nbsp; <label>{{ auth()->user()->nick}}</label></a></li>
+                        <li><a href="#"><i class="fa fa-user"></i>&nbsp;&nbsp; </a></li>
                         <li><a href="auth/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Salir</a></li>
                         <li><a href="#"><i class="fa fa-cogs"></i>&nbsp;&nbsp;Configuraciones</a></li>
                         <li role="separator" class="divider"></li>
@@ -84,6 +84,6 @@
 
     </div>
 </nav>
-<input type="hidden" value="{{auth()->user()->id}}" id="userauth">
+<input type="hidden" value="12" id="userauth">
 </div>
 <div class="container page_fix">

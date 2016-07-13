@@ -21,23 +21,20 @@ class Opens_Controller extends Controller
        return view('opens.index');
     }
 
+    public function getstores()
+    {
+        $storehouseslist = DB::table('stores')->where('state', 0)->get();
+        $result = [
+            'data' =>  $storehouseslist
+        ];
+        return response()->json($result);
+    }
+
     public function lists(Request $request)
     {
-        $skip =$request['start'] * $request['take'];
-        $storehouses = DB::table('stores')
-            ->join('store_types', 'stores.idtype', '=', 'store_types.id')
-            ->join('product_state', 'stores.state', '=', 'product_state.id');
-        $filtros = json_decode($request['fillter'], true);
-        $order = json_decode($request['order'], true);
-        if ( $filtros['name'] !== "" ) $storehouses->where('stores.name', 'LIKE',  "%".$filtros['name']."%");
-        $storehouses->orderby($order['field'], $order['type'] );
-        $total =  $storehouses->select('stores.id', 'stores.name', 'store_types.name as type', 'product_state.state as state')->count();
-        $storehouseslist =  $storehouses->skip($skip)->take($request['take'])->get();
-        $storetype = DB::table('store_types')->select('*')->get();
-        $result = [
-            'total' => $total,
-            'data' =>  $storehouseslist,
-            'storetype' => $storetype
+       $storehouseslist = DB::table('stores')->where('state', 0)->get();
+       $result = [
+            'data' =>  $storehouseslist
         ];
         return response()->json($result);
     }

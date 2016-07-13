@@ -8,39 +8,31 @@
         </div>
         <!-- Panel de acciones -->
         <div class="row">
-        <div class="col-sm-4 col-md-4 col-lg-4 col_fix">
-            <div class="row">
-                <div class="panel panel-default panel_bnt_fix">
-                    <div class="panel-body">
-                        <div class="col-xs-4 col-sm-6 col-md-6 col-lg-6 col_fix">
+            <div class="panel panel-default panel_bnt_fix">
+                <div class="panel-body" >
+                    <div class="col-sm-3 col-md-3 col-gl-3">
+                      <div class="form-group">
+                            Almacenes disponibles.
+                            <select class="form-control input-sm" ng-model="data_stores.valor">
+                                <option value=""></option>
+                                <option ng-repeat="store in data_stores.availableOptions" value="<%store.id%>"><%store.name%></option>
+                            </select>
+                          </div>
+                      </div>
+                    <div class="col-sm-3 col-md-3 col-gl-3">
+                        <div class="form-group">
+                           <i style="color : #2e3338;" >Almacenes disponibles.</i>
                             <div ng-controller="setopens_clr">
-                            <a ng-class="{disabled: idclon == null}" ng-click="toggle( idclon)" class="btn btn-default btn-sm"><i class="fa fa-edit fa-1x"></i>&nbsp;Añadir</a>
-                            <!-- <button class="btn btn-default btn-sm"><i class="fa fa-print fa-1x"></i>Imprimir</button> -->
+                                <a ng-class="{disabled: $parent.data_stores.valor == ''}" ng-click="toggle($parent.data_stores.valor)" class="btn btn-default btn-sm"><i class="fa fa-edit fa-1x"></i>&nbsp;Añadir</a>
+                                <!-- <button class="btn btn-default btn-sm"><i class="fa fa-print fa-1x"></i>Imprimir</button> -->
                                 <div ng-include="createtpl"></div>
                             </div>
-                        </div>
-                        <div class="col-xs-8 col-sm-6 col-md-64 col-lg-6 col_fix">
-
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Visor de datos -->
-            <div class="panel panel-default pnl_second">
-                    <div class="panel-heading panel-heading_fix">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><eafieldorder display="AlMACEN" field="stores.name" idfs="iproductcode"></eafieldorder></div>
-                        </div>
-                    </div>
-                    <div class="panel-body pnl_fix">
-                        <div ng-repeat="entity in lista"  ng-class="{'selectedtr':$index == selectedRow}"  ng-click="setClickedRow($index, entity.id)" class="row rowtable mouse div_hover">
-                            <div class="col-xs-4 col-sm-6 col-md-6  col-lg-6 text-justify"><%entity.name%></div>
-                        </div>
-                    </div>
-                    <div class="panel-footer panel-footer_dix"></div>
-            </div>
-         </div>
-         <div class="col-sm-8 col-md-8 col-lg-8 col_fix" style="padding-left: 3px;">  <!-- panel de ingredientes-->
+        </div>
+
              <div class="row">
                  <div class="panel panel-default panel_bnt_fix">
                      <div class="panel-body" style="padding: 10px;">
@@ -69,7 +61,7 @@
                  </div>
              </div>
          </div>
-         </div>
+
         <div ng-include="erasertpl"></div>
 
     </div>		<!-- fin controllador-->

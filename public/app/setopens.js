@@ -1,10 +1,11 @@
-app.controller('setopens_clr', ['$scope', '$http', 'entity_ingres',  function ($scope, $http, entity_ingres ) {
+app.controller('setopens_clr', ['$scope', '$http', 'entity_ingres',  function ($scope, $http, entity_ingres) {
     $scope.createtpl = "/tpl/opens/create.blade.php";
     $scope.order = {
         field : 'products.code',
         type : 'asc',
         idfs : 'iproductcode_ingre'
     };
+    
     $scope.filter = {
         name: '',
         code : ''
@@ -60,7 +61,7 @@ app.controller('setopens_clr', ['$scope', '$http', 'entity_ingres',  function ($
     $scope.set = function (i) {
         if (!id_exis(i.id,  entity_ingres.values)){
             entity_ingres.values.push(i);
-            $scope.listaingres =  _.without($scope.listaingres, i);
+            $scope.products = _.without($scope.products, i);
         }
     }
 }]);

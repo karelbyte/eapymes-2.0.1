@@ -1,6 +1,6 @@
 <?php
-/*'middleware' => 'auth'*/
-Route::group(['middleware' => 'auth'], function () {
+/*'middleware' => 'auth'    <label>{{ auth()->user()->nick}}</label> {{auth()->user()->id}}*/
+Route::group([''], function () {
 
 /*
  <label>{{ auth()->user()->nick}}</label> */
@@ -33,7 +33,6 @@ resource('taxs','Taxs_Controller');
 get('discounts/lists', 'Discounts_Controller@lists');
 resource('discounts','Discounts_Controller');
 
-
 // route products
 get('/products/lists', 'Products_Controller@lists');
 get('/products/taxs/{id}', 'Products_Controller@taxs');
@@ -46,7 +45,6 @@ resource('products','Products_Controller');
 get('/ingredients/lists/{id}','Products_Ingredients_Controller@ingredients');
 get('/ingredients/product/list/{id}','Products_Ingredients_Controller@product_ingredients');
 resource('ingredients','Products_Ingredients_Controller');
-
 
 // routes persons
 post('persons/imgstore', 'Persons_Controller@saveimg');
@@ -65,12 +63,13 @@ resource('users','Users_Controller');
 get('/stores/lists', 'Stores_Controller@lists');
 resource('stores','Stores_Controller');
 
-// routes storehouses
+// routes openes
+get('/opens/getstores', 'Opens_Controller@getstores');
 get('/opens/products/{id}', 'Opens_Controller@products');
 get('/opens/lists', 'Opens_Controller@lists');
 resource('opens','Opens_Controller');
     
-});// routes storehouses
+});// routes shelves
 get('/shelves/lists', 'Shelves_Controller@lists');
 resource('shelves','Shelves_Controller');
 

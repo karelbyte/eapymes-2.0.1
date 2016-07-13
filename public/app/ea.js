@@ -47,15 +47,11 @@ var app = angular.module('ea', ['ngResource', 'toggle-switch']).config(function(
         }
 })
 .service('entity_ingres', [function() {
-
     return  {id : 0, values : []}
-
 }])
     
 .factory('userauth', [function() {
-
         return  {id : 0, idhelp : 0}
-
 }])
     
 .directive('uploaderModel', ["$parse", function ($parse) {

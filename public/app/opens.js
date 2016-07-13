@@ -1,4 +1,4 @@
-app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'userauth',function ($scope, $http, $resource, restAPI, userauth ) {
+app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'userauth', 'entity_ingres', function ($scope, $http, $resource, restAPI, userauth, entity_ingres ) {
     $scope.createtpl = "/tpl/opens/create.blade.php";
     $scope.paging = "/tpl/paginator.php";
     $scope.erasertpl = "/tpl/eraser.blade.php";
@@ -24,7 +24,7 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
             method: "GET",
             params: {user : userauth}
         }).then(function (response) {
-            if ( !response.data)   $scope.helptpl = "/tpl/opens/help.php";
+            if ( !response.data) $scope.helptpl = "/tpl/opens/help.php";
         })
     }
     $scope.visto = function () {
@@ -36,6 +36,20 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
         })
     };
     showhelp();
+    
+    // obtener los almacenes 
+
+    $scope.data_stores = {
+        valor: '',
+        availableOptions: []
+    };
+    $http({
+        url: "/opens/getstores",
+        method: "GET"
+    }).then(function (response) {
+        $scope.data_stores.availableOptions = response.data.data;
+    });
+    
     // paginacion y resultados
     $scope.currentpage = 1;
     function setpage(page){
@@ -47,16 +61,14 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
     $scope.recordpage = 10;
     $scope.rango = rangoutil;
 
+    
     $scope.getresult = function getResultPages(page)
     {
         $http({
             url: "/opens/lists",
-            method: "GET",
-            params: {start : page-1, take: $scope.recordpage, fillter : $scope.filter, order: $scope.order}
+            method: "GET"
         }).then(function (response) {
             $scope.lista = response.data.data;
-            $scope.totalpage =  Math.ceil(parseInt(response.data.total)/ $scope.recordpage);
-            $scope.modules = response.data.modules;
         })
     };
     $scope.$watch('recordpage + filter.name + order.field + order.type', function(){
@@ -64,84 +76,35 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
     });
 
     //---------------------
-    $scope.entity = {
-        id : 0,
-        name : "",
-        permits : []
+    $scope.ingredients = [];
+    $scope.setClickedRow = function(index, id){
+        $scope.selectedRow = index;
+        $scope.idclon = id;
+        entity_ingres.id = id;
+        $http({
+            url: "/ingredients/product/list/"+id,
+            method: "GET"
+        }).then(function (response) {
+            $scope.ingredients =  response.data.ingreslist;
+            $scope.noingres = response.data.ingreslist.length == 0;
+            entity_ingres.values = response.data.ingreslist;
+        })
     };
-    $scope.permits = function (id) {
-        return  $scope.entity.permits.indexOf(id) !== -1;
-    };
+    function pass(arrays) {
+        for (xpro in arrays) {
+            if ( isNaN(arrays[xpro].cant)) return true;
+        } return false;
+    }
 
-    $scope.setchek = function (value, chek) {
-        if (chek){
-            if ( $scope.entity.permits.indexOf(value) == -1) $scope.entity.permits.push(value)
-        }  else {
-            if ( $scope.entity.permits.indexOf(value) !== -1)  $scope.entity.permits = _.without( $scope.entity.permits, value);
-        }
-    };
-
-    $scope.toggle = function(modalstate, id) {
-        $scope.modalstate = modalstate;
-        angular.copy({}, $scope.retorno);
-        switch (modalstate) {
-            case 'add':
-                if (id == null){
-                    $scope.form_title = "Agregar un perfil con sus permisos.";
-                    $scope.entity.permits = [];
-                    $scope.entity.id =  0;
-                    $scope.entity.name = "";
-                } else {
-                    restAPI.rest('/opens').get({id: id}).$promise.then(function(response){
-                        $scope.form_title = "Clonar un perfil con sus permisos.";
-                        $scope.entity.permits = [];
-                        $scope.entity.id =  response.profile.id;
-                        $scope.entity.name = response.profile.name;
-                        for (var i in response.profile_details) {
-                            $scope.entity.permits.push(response.profile_details[i].idmodule);
-                        }
-
-                    });
-                }
-                break;
-            case 'edit':
-                restAPI.rest('/opens').get({id: id}).$promise.then(function(response){
-                    $scope.form_title = "Actualizar perfil con sus permisos.";
-                    $scope.entity.permits = [];
-                    $scope.entity.id =  response.profile.id;
-                    $scope.entity.name = response.profile.name;
-                    for (var i in response.profile_details) {
-                        $scope.entity.permits.push(response.profile_details[i].idmodule);
-                    }
-
-                });
-                break;
-            default:
-                break;
-        }
-        $('#modal_add_edit').modal('show');
-    };
-
-    $scope.retorno ={};
-
-    $scope.save = function(modalstate, id) {
-        angular.copy({}, $scope.retorno);
-        if (modalstate === 'edit'){
-            restAPI.rest('/opens').update({id: id}, $scope.entity).$promise.then(function successCallback(response) {
-                alertas("#msj-success", response, "#name");
-                $scope.getresult($scope.currentpage);
+    $scope.save = function(){
+        if (!pass(entity_ingres.values)){
+            restAPI.rest('/ingredients').save(entity_ingres).$promise.then(function successCallback(response) {
+                alertas("#msj-success", response,  null);
             }, function errorCallback(msj) {
-                angular.copy({}, $scope.retorno);
-                $scope.retorno = msj.data;
-
+                alertas("#msj-success", msj.data,  null);
             });
-        } else {
-            restAPI.rest('/opens').save($scope.entity).$promise.then(function successCallback(response) {
-                alertas("#msj-success", response, "#name");
-                $scope.getresult($scope.currentpage);
-            }, function errorCallback(msj) {
-                $scope.retorno = msj.data;
-            });
+        } else{
+            alertas("#msj-success", {codigo: 500, msj : 'Existen datos erroneos' }, null);
         }
     };
 
@@ -150,21 +113,9 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
         $scope.kill = id;
     };
 
-    $scope.delete = function(){
-        restAPI.rest('/opens').delete({id:$scope.kill}).$promise.then(function(response){
-            $("#modal_delete").modal('toggle');
-            alertas("#msj-success", response, null);
-            $scope.getresult($scope.currentpage);
-            $scope.idclon = null;
-        });
+    $scope.setdel = function (x) {
+        $scope.ingredients =  _.without($scope.ingredients, x);
     };
-
-    $scope.selectedRow = null;
-    $scope.idclon = null;
-    $scope.setClickedRow = function(index, idclon){
-        $scope.selectedRow = index;
-        $scope.idclon = idclon;
-    }
 }]);
 
 
