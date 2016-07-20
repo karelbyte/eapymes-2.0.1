@@ -60,7 +60,7 @@ class Products_Controller extends Controller
         $product->storable = $request->input('storable');
         $product->saleable = $request->input('saleable');
         $product->produced = $request->input('produced');
-        $product->purchase = $request->input('purchaseable');
+        $product->purchase = $request->input('purchase');
         $product->reward = $request->input('reward');
         $product->mix = $request->input('mix');
         $product->active = $request->input('active');
@@ -107,7 +107,7 @@ class Products_Controller extends Controller
                 $product->storable = $request->input('storable');
                 $product->saleable = $request->input('saleable');
                 $product->produced = $request->input('produced');
-                $product->purchase = $request->input('purchaseable');
+                $product->purchase = $request->input('purchase');
                 $product->reward = $request->input('reward');
                 $product->mix = $request->input('mix');
                 $product->active = $request->input('active');

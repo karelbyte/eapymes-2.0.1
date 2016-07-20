@@ -1,4 +1,4 @@
-app.controller('setopens_clr', ['$scope', '$http', 'entity_ingres',  function ($scope, $http, entity_ingres) {
+app.controller('setopens_clr', ['$scope', '$http', 'restAPI',  function ($scope, $http, restAPI) {
     $scope.createtpl = "/tpl/opens/create.blade.php";
     $scope.order = {
         field : 'products.code',
@@ -31,6 +31,7 @@ app.controller('setopens_clr', ['$scope', '$http', 'entity_ingres',  function ($
     $scope.recordpage = 10;
     $scope.rango = rangoutil;
 
+  
     $scope.getresult = function getResultPages(page)
     {
         $http({
@@ -39,7 +40,7 @@ app.controller('setopens_clr', ['$scope', '$http', 'entity_ingres',  function ($
             params: {start : page-1, take: $scope.recordpage, fillter : $scope.filter, order: $scope.order}
         }).then(function (response) {
             $scope.products = response.data.data;
-            $scope.shelves = response.data.shelves;
+            $scope.data_shelves.availableOptions = response.data.shelves;
             $scope.totalpage =  Math.ceil(parseInt(response.data.total)/ $scope.recordpage);
         })
     };
@@ -58,10 +59,25 @@ app.controller('setopens_clr', ['$scope', '$http', 'entity_ingres',  function ($
             if (arrays[xpro].id == id) return true;
         } return false;
     }
+    
+    $scope.data_shelves = {
+        valor: null,
+        availableOptions: []
+    };
     $scope.set = function (i) {
-        if (!id_exis(i.id,  entity_ingres.values)){
-            entity_ingres.values.push(i);
-            $scope.products = _.without($scope.products, i);
-        }
-    }
+        product = i;
+        product.idstore = $scope.id;
+        if (!isNaN(i.cant)){
+                restAPI.rest('/opens').save(product).$promise.then(function successCallback(response) {
+                    alertas("#msj-success", response,  null);
+                    $scope.products = _.without($scope.products, i);
+                }, function errorCallback(msj) {
+                    alertas("#msj-success", msj.data,  null);
+                });
+            } else{
+                alertas("#msj-success", {codigo: 500, msj : 'Existen datos erroneos' }, null);
+
+            }
+        };
+
 }]);

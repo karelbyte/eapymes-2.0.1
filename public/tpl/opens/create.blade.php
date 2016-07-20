@@ -9,8 +9,9 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
                 <div class="panel panel-default pnl_second"  style="margin-bottom: 0">
                     <div class="panel-heading panel-heading_fix">
-                        <div class="row text-right" style="padding-right: 10px;">
-                            <div class="col-sm-offset-7 col-md-offset-7 col-lg-offset-7"><eafilter field="code" caret="off"></eafilter> </div>
+                        <div class="row " style="padding-right: 10px; padding-left: 10px;">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-left col_fix"><label id="msj-success"></label></div>
+                            <div class="col-sm-offset-7 col-md-offset-7 col-lg-offset-7 text-right"><eafilter field="code" caret="off"></eafilter> </div>
                         </div>
                         <hr style="margin-bottom: 4px; margin-top: 4px;">
                         <div class="row">
@@ -27,9 +28,9 @@
                             <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 text-justify"><%pro.code%></div>
                             <div class="hidden-xs col-sm-5 col-md-3  col-lg-3 text-justify"><%pro.name%></div>
                             <div class="col-xs-4 col-sm-2 col-md-3  col-lg-3 text-justify">
-                                <select class="form-control input-sm">
+                                <select class="form-control input-sm" ng-model="pro.idshelve">
                                     <option value=""></option>
-                                    <option ng-repeat="shel in shelves" value="<%shel.id%>"><%shel.name%></option>
+                                    <option ng-repeat="shel in data_shelves.availableOptions" value="<%shel.id%>"><%shel.name%></option>
                                 </select>
                             </div>
                             <div class="col-xs-1 col-sm-2 col-md-2  col-lg-2 text-justify"><input class="form-control input-sm" ng-model="pro.cant"></div>

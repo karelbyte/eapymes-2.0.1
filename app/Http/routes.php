@@ -66,7 +66,7 @@ resource('stores','Stores_Controller');
 // routes openes
 get('/opens/getstores', 'Opens_Controller@getstores');
 get('/opens/products/{id}', 'Opens_Controller@products');
-get('/opens/lists', 'Opens_Controller@lists');
+get('/opens/lists/{id}', 'Opens_Controller@lists');
 resource('opens','Opens_Controller');
     
 });// routes shelves

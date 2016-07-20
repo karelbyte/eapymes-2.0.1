@@ -4,7 +4,7 @@
        <div ng-include="helptpl"></div>
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col_fix"><h4>Aperturas de almacenes.</h4></div>
-            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-6 text-right col_fix"><label id="msj-success"></label></div>
+
         </div>
         <!-- Panel de acciones -->
         <div class="row">
@@ -44,20 +44,27 @@
              <div class="panel panel-default pnl_second">
                  <div class="panel-heading panel-heading_fix">
                      <div class="row" style="padding-bottom: 4px;">
-                         <div class="col-xs-6 col-sm-7 col-md-3 col-lg-3 col_data">CODIGO</div>
-                         <div class="hidden-xs hidden-sm col-md-6 col-lg-6">NOMBRE</div>
+                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col_data"><eafieldorder display="CODIGO" field="products.code" idfs="icode"></eafieldorder></div>
+                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col_data"><eafieldorder display="NOMBRE" field="products.name" idfs="iname"></eafieldorder></div>
+                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col_data"><eafieldorder display="ESTANTES" field="inventorys.idshelve" idfs="ishelve"></eafieldorder></div>
+                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col_data"><eafieldorder display="CANTIDAD" field="inventorys.cant" idfs="icant"></eafieldorder></div>
+                         <div class="col-xs-2 col-sm-1 col-md-2 col-lg-2 "><label class="cursor">ACCIONES</label></div>
                      </div>
                  </div>
                  <div class="panel-body pnl_fix">
-                     <div ng-repeat="x in opens"  class="row rowtable mouse div_hover">
-                         <div class="col-xs-6 col-sm-7 col-md-3  col-lg-3 text-justify col_data"><%x.code%></div>
-                         <div class="hidden-xs hidden-sm col-md-6  col-lg-6 text-justify"><%x.name%></div>
-                         <div class="col-xs-4 col-sm-3 col-md-2  col-lg-2 text-justify"><input ng-model="x.cant" class="form-control input-sm"></div>
-                         <div class="col-xs-1 col-sm-1 col-md-1  col-lg-1 text-justify" ng-click="setdel(x)"><button class="btn btn-danger btn-xs"><i class="fa fa-close"></i> </button></div>
+                     <div ng-repeat="x in lista"  class="row rowtable mouse div_hover">
+                         <div class="ccol-xs-3 col-sm-3 col-md-3 col-lg-3 text-justify col_data"><%x.code%></div>
+                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-justify col_data"><%x.name%></div>
+                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-justify col_data"><%x.shelve%></div>
+                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-justify col_data"><%x.cant%></div>
+                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-justify">
+                            <button class="btn btn-default btn-xs" ng-click="toggle('edit', entity.id)"> <span class="glyphicon glyphicon-edit"></span></button>
+                             <button class="btn btn-danger btn-xs" ng-click="setkill('Eliminar producto de la apertura.',entity.id)" data-toggle='modal' data-target='#modal_delete'> <span class="glyphicon glyphicon-trash"></span></button>
+                         </div>
                      </div>
                  </div>
                  <div class="panel-footer panel-footer_fix text-right">
-                     <a ng-class="{disabled: opens.length == 0}" ng-click="save()" class="btn btn-default btn-sm">Guardar</a>
+                     <a ng-class="{disabled: opens.length == 0}" ng-click="refresh()" class="btn btn-default btn-sm">Actualizar</a>
                  </div>
              </div>
          </div>

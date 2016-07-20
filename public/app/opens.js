@@ -5,12 +5,13 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
 
     // ordernar y filtrar
     $scope.order = {
-        field : 'stores.name',
+        field : 'products.name',
         type : 'asc',
         idfs : 'iname'
     };
     $scope.filter = {
-        name: ''
+        name: '',
+        code: ''
     };
     $scope.setorder = function(field, idfs) {
         setorders(field, idfs,$scope)
@@ -65,13 +66,14 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
     $scope.getresult = function getResultPages(page)
     {
         $http({
-            url: "/opens/lists",
-            method: "GET"
+            url: "/opens/lists/" + $scope.data_stores.valor,
+            method: "GET",
+            params: {start : page-1, take: $scope.recordpage, fillter : $scope.filter, order: $scope.order}
         }).then(function (response) {
             $scope.lista = response.data.data;
         })
     };
-    $scope.$watch('recordpage + filter.name + order.field + order.type', function(){
+    $scope.$watch('recordpage + filter.name + filter.code + data_stores.valor + order.field + order.type', function(){
         $scope.getresult($scope.currentpage);
     });
 
@@ -96,17 +98,9 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
         } return false;
     }
 
-    $scope.save = function(){
-        if (!pass(entity_ingres.values)){
-            restAPI.rest('/ingredients').save(entity_ingres).$promise.then(function successCallback(response) {
-                alertas("#msj-success", response,  null);
-            }, function errorCallback(msj) {
-                alertas("#msj-success", msj.data,  null);
-            });
-        } else{
-            alertas("#msj-success", {codigo: 500, msj : 'Existen datos erroneos' }, null);
-        }
-    };
+   $scope.refresh = function () {
+       $scope.getresult($scope.currentpage);
+   };
 
     $scope.setkill = function(name, id){
         $scope.killname = name;
