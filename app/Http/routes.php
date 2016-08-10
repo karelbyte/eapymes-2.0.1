@@ -1,6 +1,6 @@
 <?php
 /*'middleware' => 'auth'    <label>{{ auth()->user()->nick}}</label> {{auth()->user()->id}}*/
-Route::group([''], function () {
+Route::group([], function () {
 
 /*
  <label>{{ auth()->user()->nick}}</label> */

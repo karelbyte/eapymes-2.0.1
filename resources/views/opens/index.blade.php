@@ -1,10 +1,10 @@
 @extends('layout')
 @section('content')
-    <div ng-controller="opens_ctrl">
+ <div ng-controller="opens_ctrl">
        <div ng-include="helptpl"></div>
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col_fix"><h4>Aperturas de almacenes.</h4></div>
-
+            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-6 text-right col_fix"><label id="msj-success"></label></div>
         </div>
         <!-- Panel de acciones -->
         <div class="row">
@@ -43,9 +43,15 @@
              <!-- Visor de datos -->
              <div class="panel panel-default pnl_second">
                  <div class="panel-heading panel-heading_fix">
-                     <div class="row" style="padding-bottom: 4px;">
+                     <div class="row">
                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col_data"><eafieldorder display="CODIGO" field="products.code" idfs="icode"></eafieldorder></div>
                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col_data"><eafieldorder display="NOMBRE" field="products.name" idfs="iname"></eafieldorder></div>
+                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col_data"></div>
+                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col_data"></div>
+                     </div>
+                     <div class="row">
+                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col_data"><eafilter field="code" caret="off"></eafilter></div>
+                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col_data"><eafilter field="name" caret="off"></eafilter></div>
                          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col_data"><eafieldorder display="ESTANTES" field="inventorys.idshelve" idfs="ishelve"></eafieldorder></div>
                          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col_data"><eafieldorder display="CANTIDAD" field="inventorys.cant" idfs="icant"></eafieldorder></div>
                          <div class="col-xs-2 col-sm-1 col-md-2 col-lg-2 "><label class="cursor">ACCIONES</label></div>
@@ -58,20 +64,29 @@
                          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-justify col_data"><%x.shelve%></div>
                          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-justify col_data"><%x.cant%></div>
                          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-justify">
-                            <button class="btn btn-default btn-xs" ng-click="toggle('edit', entity.id)"> <span class="glyphicon glyphicon-edit"></span></button>
-                             <button class="btn btn-danger btn-xs" ng-click="setkill('Eliminar producto de la apertura.',entity.id)" data-toggle='modal' data-target='#modal_delete'> <span class="glyphicon glyphicon-trash"></span></button>
+                            <button class="btn btn-default btn-xs" ng-click="toggle('edit', x.id)"> <span class="glyphicon glyphicon-edit"></span></button>
+                             <button class="btn btn-danger btn-xs" ng-click="setkill('Eliminar producto de la apertura.',x.id)" data-toggle='modal' data-target='#modal_delete'> <span class="glyphicon glyphicon-trash"></span></button>
                          </div>
                      </div>
                  </div>
-                 <div class="panel-footer panel-footer_fix text-right">
-                     <a ng-class="{disabled: opens.length == 0}" ng-click="refresh()" class="btn btn-default btn-sm">Actualizar</a>
+                 <div class="panel-footer panel-footer_dix">
+                     <div class="row">
+                         <div class="col-md-8  col-sm-4 col-lg-8">
+                             <div ng-include="paging"></div>
+                         </div>
+                         <div class="col-md-4 col-sm-4 col-lg-4 text-right">
+                             <a ng-class="{disabled: opens.length == 0}" ng-click="refresh()" class="btn btn-default btn-sm">Actualizar</a>
+                         </div>
+                     </div>
+
+
                  </div>
              </div>
-         </div>
+
 
         <div ng-include="erasertpl"></div>
 
-    </div>		<!-- fin controllador-->
+ </div>		<!-- fin controllador-->
 @endsection
 @section('scripts')
     <script src="app/opens.js"></script>

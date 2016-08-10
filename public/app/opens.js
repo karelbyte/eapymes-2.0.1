@@ -49,6 +49,7 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
         method: "GET"
     }).then(function (response) {
         $scope.data_stores.availableOptions = response.data.data;
+       
     });
     
     // paginacion y resultados
@@ -71,6 +72,8 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
             params: {start : page-1, take: $scope.recordpage, fillter : $scope.filter, order: $scope.order}
         }).then(function (response) {
             $scope.lista = response.data.data;
+            $scope.shelves = response.data.shelves;
+            $scope.totalpage =  Math.ceil(parseInt(response.data.total)/ $scope.recordpage);
         })
     };
     $scope.$watch('recordpage + filter.name + filter.code + data_stores.valor + order.field + order.type', function(){
@@ -107,8 +110,8 @@ app.controller('opens_ctrl', ['$scope', '$http', '$resource', 'restAPI',  'usera
         $scope.kill = id;
     };
 
-    $scope.setdel = function (x) {
-        $scope.ingredients =  _.without($scope.ingredients, x);
+    $scope.delete = function () {
+        eraser('/opens', restAPI, $scope);
     };
 }]);
 

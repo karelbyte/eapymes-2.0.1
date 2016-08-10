@@ -6,8 +6,10 @@
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
-      <schema id="1" name="ea"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="ea">
+        <visible>1</visible>
+      </schema>
       <table id="2" parent="1" name="actions"/>
       <table id="3" parent="1" name="categories"/>
       <table id="4" parent="1" name="discounts"/>
@@ -43,10 +45,10 @@
       <table id="34" parent="1" name="users_help"/>
       <column id="35" parent="2" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="36" parent="2" name="name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <key id="37" parent="2" name="PRIMARY">
         <columns>id</columns>
@@ -54,12 +56,12 @@
       </key>
       <column id="38" parent="3" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="39" parent="3" name="name">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="40" parent="3" name="idx_name">
         <columns>name</columns>
@@ -76,15 +78,15 @@
       </key>
       <column id="43" parent="4" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="44" parent="4" name="name">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="45" parent="4" name="percent">
-        <data-type>decimal(12,2)</data-type>
+        <data-type>decimal(12,2)|0</data-type>
       </column>
       <key id="46" parent="4" name="PRIMARY">
         <columns>id</columns>
@@ -92,17 +94,17 @@
       </key>
       <column id="47" parent="5" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="48" parent="5" name="idinventory">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="49" parent="5" name="min">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <column id="50" parent="5" name="max">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <index id="51" parent="5" name="fk_inventory_sentinels_inventorys_1">
         <columns>idinventory</columns>
@@ -114,23 +116,23 @@
       </key>
       <column id="53" parent="6" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="54" parent="6" name="idstore">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="55" parent="6" name="idproduct">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="56" parent="6" name="idshelve">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="57" parent="6" name="cant">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <column id="58" parent="6" name="sentinel">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <index id="59" parent="6" name="fk_inventory_products_1">
         <columns>idproduct</columns>
@@ -146,12 +148,12 @@
       </key>
       <column id="62" parent="7" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="63" parent="7" name="name">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="64" parent="7" name="idx_name">
         <columns>name</columns>
@@ -168,19 +170,19 @@
       </key>
       <column id="67" parent="8" name="migration">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="68" parent="8" name="batch">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="69" parent="9" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="70" parent="9" name="name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="71" parent="9" name="idx_name">
         <columns>name</columns>
@@ -197,15 +199,15 @@
       </key>
       <column id="74" parent="10" name="email">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="75" parent="10" name="token">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="76" parent="10" name="created_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <index id="77" parent="10" name="password_resets_email_index">
@@ -218,11 +220,11 @@
       </index>
       <column id="79" parent="11" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="80" parent="11" name="name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="81" parent="11" name="idx_name">
         <columns>name</columns>
@@ -239,11 +241,11 @@
       </key>
       <column id="84" parent="12" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="85" parent="12" name="name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="86" parent="12" name="idx_name">
         <columns>name</columns>
@@ -260,63 +262,63 @@
       </key>
       <column id="89" parent="13" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="90" parent="13" name="pic">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="91" parent="13" name="idtype">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="92" parent="13" name="idreason">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="93" parent="13" name="name">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="94" parent="13" name="comercial_name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="95" parent="13" name="address">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="96" parent="13" name="zip">
-        <data-type>varchar(6)</data-type>
+        <data-type>varchar(6)|0</data-type>
       </column>
       <column id="97" parent="13" name="city">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="98" parent="13" name="county">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="99" parent="13" name="state">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="100" parent="13" name="country">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="101" parent="13" name="email">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="102" parent="13" name="phone">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="103" parent="13" name="cell">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="104" parent="13" name="rfc">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="105" parent="13" name="curp">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="106" parent="13" name="active">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <index id="107" parent="13" name="fk_persons_person_reasons_1">
         <columns>idreason</columns>
@@ -350,16 +352,16 @@
       </key>
       <column id="114" parent="14" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="115" parent="14" name="idproduct">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="116" parent="14" name="iddiscount">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <index id="117" parent="14" name="fk_productdiscounts_discounts_1">
         <columns>iddiscount</columns>
@@ -375,17 +377,17 @@
       </key>
       <column id="120" parent="15" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="121" parent="15" name="idproduct">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="122" parent="15" name="idingredient">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="123" parent="15" name="cant">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <index id="124" parent="15" name="fk_product_ingredients_products_1">
         <columns>idproduct</columns>
@@ -397,10 +399,10 @@
       </key>
       <column id="126" parent="16" name="id">
         <mandatory>1</mandatory>
-        <data-type>tinyint(4)</data-type>
+        <data-type>tinyint(4)|0</data-type>
       </column>
       <column id="127" parent="16" name="state">
-        <data-type>varchar(20)</data-type>
+        <data-type>varchar(20)|0</data-type>
       </column>
       <key id="128" parent="16" name="PRIMARY">
         <columns>id</columns>
@@ -408,14 +410,14 @@
       </key>
       <column id="129" parent="17" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="130" parent="17" name="idproduct">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="131" parent="17" name="idtax">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <index id="132" parent="17" name="fk_producttaxs_products_1">
         <columns>idproduct</columns>
@@ -431,53 +433,53 @@
       </key>
       <column id="135" parent="18" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="136" parent="18" name="code">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="137" parent="18" name="name">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="138" parent="18" name="price">
         <mandatory>1</mandatory>
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <column id="139" parent="18" name="idmeasure">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="140" parent="18" name="idcategorie">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="141" parent="18" name="active">
         <mandatory>1</mandatory>
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <column id="142" parent="18" name="service">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <column id="143" parent="18" name="storable">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <column id="144" parent="18" name="saleable">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <column id="145" parent="18" name="purchase">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <column id="146" parent="18" name="reward">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <column id="147" parent="18" name="mix">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <column id="148" parent="18" name="produced">
-        <data-type>tinyint(4)</data-type>
+        <data-type>tinyint(4)|0</data-type>
       </column>
       <index id="149" parent="18" name="fk_products_categories_1">
         <columns>idcategorie</columns>
@@ -502,14 +504,14 @@
       </key>
       <column id="154" parent="19" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="155" parent="19" name="idprofile">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="156" parent="19" name="idmodule">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <index id="157" parent="19" name="fk_profile_details_modules_1">
         <columns>idmodule</columns>
@@ -525,11 +527,11 @@
       </key>
       <column id="160" parent="20" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="161" parent="20" name="name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="162" parent="20" name="idx_name">
         <columns>name</columns>
@@ -546,23 +548,23 @@
       </key>
       <column id="165" parent="21" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="166" parent="21" name="idpurchese">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="167" parent="21" name="idproduct">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="168" parent="21" name="cant">
-        <data-type>decimal(10,2)</data-type>
+        <data-type>decimal(10,2)|0</data-type>
       </column>
       <column id="169" parent="21" name="price">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <column id="170" parent="21" name="amount">
-        <data-type>varchar(18)</data-type>
+        <data-type>varchar(18)|0</data-type>
       </column>
       <index id="171" parent="21" name="fk_purchase_details_products_1">
         <columns>idproduct</columns>
@@ -578,23 +580,23 @@
       </key>
       <column id="174" parent="22" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="175" parent="22" name="invoice">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="176" parent="22" name="idprovider">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="177" parent="22" name="date">
-        <data-type>datetime</data-type>
+        <data-type>datetime|0</data-type>
       </column>
       <column id="178" parent="22" name="note">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="179" parent="22" name="state">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <index id="180" parent="22" name="idx_invoice">
         <columns>invoice</columns>
@@ -611,20 +613,20 @@
       </key>
       <column id="183" parent="23" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="184" parent="23" name="idprovider">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="185" parent="23" name="note">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="186" parent="23" name="date">
-        <data-type>datetime</data-type>
+        <data-type>datetime|0</data-type>
       </column>
       <column id="187" parent="23" name="state">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <index id="188" parent="23" name="fk_returns_persons_1">
         <columns>idprovider</columns>
@@ -636,14 +638,14 @@
       </key>
       <column id="190" parent="24" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="191" parent="24" name="idinventory">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="192" parent="24" name="cant">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <index id="193" parent="24" name="fk_returns_details_inventorys_1">
         <columns>idinventory</columns>
@@ -655,26 +657,26 @@
       </key>
       <column id="195" parent="25" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="196" parent="25" name="idperson">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="197" parent="25" name="idtype">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="198" parent="25" name="note">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="199" parent="25" name="saleapart">
-        <data-type>decimal(12,2)</data-type>
+        <data-type>decimal(12,2)|0</data-type>
       </column>
       <column id="200" parent="25" name="date">
-        <data-type>datetime</data-type>
+        <data-type>datetime|0</data-type>
       </column>
       <column id="201" parent="25" name="state">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <index id="202" parent="25" name="fk_sales_persons_1">
         <columns>idperson</columns>
@@ -686,20 +688,20 @@
       </key>
       <column id="204" parent="26" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="205" parent="26" name="idsale">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="206" parent="26" name="idinventory">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="207" parent="26" name="cant">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <column id="208" parent="26" name="discount">
-        <data-type>decimal(12,2)</data-type>
+        <data-type>decimal(12,2)|0</data-type>
       </column>
       <index id="209" parent="26" name="fk_sales_details_inventorys_1">
         <columns>idinventory</columns>
@@ -715,16 +717,16 @@
       </key>
       <column id="212" parent="27" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="213" parent="27" name="idstore">
         <mandatory>1</mandatory>
-        <data-type>int(255)</data-type>
+        <data-type>int(255)|0</data-type>
       </column>
       <column id="214" parent="27" name="name">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="215" parent="27" name="fk_shelves_stores_1">
         <columns>idstore</columns>
@@ -745,10 +747,10 @@
       </key>
       <column id="219" parent="28" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="220" parent="28" name="name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <key id="221" parent="28" name="PRIMARY">
         <columns>id</columns>
@@ -756,18 +758,18 @@
       </key>
       <column id="222" parent="29" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="223" parent="29" name="idtype">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="224" parent="29" name="name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="225" parent="29" name="state">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <index id="226" parent="29" name="fk_stores_store_types_1">
         <columns>idtype</columns>
@@ -788,29 +790,29 @@
       </key>
       <column id="230" parent="30" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="231" parent="30" name="idinventory">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="232" parent="30" name="idaction">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="233" parent="30" name="note">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="234" parent="30" name="date">
-        <data-type>datetime</data-type>
+        <data-type>datetime|0</data-type>
       </column>
       <column id="235" parent="30" name="int">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <column id="236" parent="30" name="out">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <column id="237" parent="30" name="stock">
-        <data-type>decimal(16,2)</data-type>
+        <data-type>decimal(16,2)|0</data-type>
       </column>
       <index id="238" parent="30" name="fk_stowages_inventorys_1">
         <columns>idinventory</columns>
@@ -822,15 +824,15 @@
       </key>
       <column id="240" parent="31" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="241" parent="31" name="name">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="242" parent="31" name="percent">
-        <data-type>decimal(12,2)</data-type>
+        <data-type>decimal(12,2)|0</data-type>
       </column>
       <index id="243" parent="31" name="idx_name">
         <columns>name</columns>
@@ -847,26 +849,26 @@
       </key>
       <column id="246" parent="32" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="247" parent="32" name="idsource">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="248" parent="32" name="idtarget">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="249" parent="32" name="idinventory">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="250" parent="32" name="cant">
-        <data-type>decimal(14,2)</data-type>
+        <data-type>decimal(14,2)|0</data-type>
       </column>
       <column id="251" parent="32" name="note">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="252" parent="32" name="date">
-        <data-type>datetime</data-type>
+        <data-type>datetime|0</data-type>
       </column>
       <index id="253" parent="32" name="fk_transfers_inventorys_1">
         <columns>idinventory</columns>
@@ -886,34 +888,34 @@
       </key>
       <column id="257" parent="33" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="258" parent="33" name="idperson">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="259" parent="33" name="idprofile">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="260" parent="33" name="nick">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="261" parent="33" name="password">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="262" parent="33" name="active">
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
       </column>
       <column id="263" parent="33" name="remember_token">
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <column id="264" parent="33" name="create_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
       </column>
       <column id="265" parent="33" name="update_at">
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <index id="266" parent="33" name="fk_users_persons_1">
         <columns>idperson</columns>
@@ -938,15 +940,15 @@
       </key>
       <column id="271" parent="34" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="272" parent="34" name="iduser">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="273" parent="34" name="idhelp">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <key id="274" parent="34" name="PRIMARY">
         <columns>id</columns>

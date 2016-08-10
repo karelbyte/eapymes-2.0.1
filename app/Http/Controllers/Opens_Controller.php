@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventorys;
 use App\Models\Shelves;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -141,6 +142,24 @@ class Opens_Controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+           Inventorys::destroy($id);
+            $data = [
+                'codigo' => 200,
+                'msj' => "Producto eliminado de la apertura."
+            ];
+        } catch (QueryException $e){
+            $data = [
+                'codigo' => 500,
+                'msj' => 'No se eliminó, ocurrieron errores!'
+            ];}
+        catch (\Exception $e){
+            $data = [
+                'codigo' => 500,
+                'msj' => "A ocurrido un error!"
+            ];
+        }
+
+        return response()->json($data);
     }
 }
